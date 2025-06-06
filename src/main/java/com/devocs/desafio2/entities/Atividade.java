@@ -2,6 +2,9 @@ package com.devocs.desafio2.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "tb_atividade")
 public class Atividade {
@@ -15,6 +18,12 @@ public class Atividade {
 
     private Double preco;
 
+    @ManyToMany
+    @JoinTable(name = "tb_atividade_participante",
+            joinColumns = @JoinColumn(name = "atividade_id"),
+            inverseJoinColumns = @JoinColumn(name = "participante_id"))
+    private Set<Participante> participantes = new HashSet<>();
+
     public Atividade(){}
 
     public Atividade(Long id, String nome, String descricao, Double preco) {
@@ -24,8 +33,12 @@ public class Atividade {
         this.preco = preco;
     }
 
-    public Long getId(){
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -50,5 +63,9 @@ public class Atividade {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Set<Participante> getParticipantes() {
+        return participantes;
     }
 }

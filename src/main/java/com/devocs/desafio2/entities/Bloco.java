@@ -15,4 +15,27 @@ public class Bloco {
 
     private Instant fim;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Instant getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Instant inicio) {
+        this.inicio = inicio;
+    }
+
+    public Instant getFim() {
+        return fim;
+    }
+
+    public void setFim(Instant fim) {
+        this.fim = fim;
+    }
 }
