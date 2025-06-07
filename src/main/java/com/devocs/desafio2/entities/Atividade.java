@@ -2,7 +2,9 @@ package com.devocs.desafio2.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,7 +27,11 @@ public class Atividade {
     private Set<Participante> participantes = new HashSet<>();
 
     @OneToMany(mappedBy = "atividade")
-    private Set<Bloco> blocos = new HashSet<>();
+    private List<Bloco> blocos = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
     public Atividade(){}
 
@@ -72,7 +78,7 @@ public class Atividade {
         return participantes;
     }
 
-    public Set<Bloco> getBlocos() {
+    public List<Bloco> getBlocos() {
         return blocos;
     }
 }
